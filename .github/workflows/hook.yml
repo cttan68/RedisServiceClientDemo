@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: test customized action
         id: myjsaction
-        uses: cttan68/js-action@v1
+        uses: cttan68/js-action@v1.o
         with:
           name-of-you: 'Pushpa'
       # Use the output from the `myjsaction` step
