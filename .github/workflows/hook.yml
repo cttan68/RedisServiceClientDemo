@@ -17,10 +17,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Webhook
-      uses: distributhor/workflow-webhook@v1
-      env:
-        webhook_url: "http://amberisgreat.ngrok.io/api/test_pedant"
-        webhook_type: "json"
-        data: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
+      - name: test customized action
+        id: myjsaction
+        uses: cttan68/js-action@v1
+        with:
+          name-of-you: 'Pushpa'
+      # Use the output from the `myjsaction` step
+      - name: Get the output message time
+        run: echo "The time was ${{ steps.myjsaction.outputs.time }}" 
+
+      - name: Webhook
+        uses: distributhor/workflow-webhook@v1
+        env:
+          webhook_url: "http://amberisgreat.ngrok.io/api/test_pedant"
+          webhook_type: "json"
+          data: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
