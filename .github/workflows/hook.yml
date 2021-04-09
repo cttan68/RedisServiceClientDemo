@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: test customized action
         id: myjsaction
-        uses: cttan68/js-action@v1.0
+        uses: cttan68/js-action@v1.1
         with:
-          name-of-you: 'Pushpa'
+          milliseconds: '5000'
       # Use the output from the `myjsaction` step
       - name: Get the output message time
         run: echo "The time was ${{ steps.myjsaction.outputs.time }}" 
